@@ -1,4 +1,4 @@
-package com.SasiyaNet.Banking.System;
+package com.SasiyaNet.Banking.System.fixeddeposits;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;

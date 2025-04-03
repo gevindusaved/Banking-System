@@ -1,4 +1,4 @@
-package com.SasiyaNet.Banking.System;
+package com.SasiyaNet.Banking.System.fixeddeposits;
 
 import java.util.List;
 import java.util.Optional;

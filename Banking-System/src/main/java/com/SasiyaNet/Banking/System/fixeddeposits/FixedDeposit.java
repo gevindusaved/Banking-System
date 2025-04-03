@@ -1,4 +1,4 @@
-package com.SasiyaNet.Banking.System;
+package com.SasiyaNet.Banking.System.fixeddeposits;
 
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
