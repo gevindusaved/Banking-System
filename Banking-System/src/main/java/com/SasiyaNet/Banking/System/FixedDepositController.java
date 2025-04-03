@@ -26,12 +26,14 @@ public class FixedDepositController {
     }
 
     @GetMapping("/{fixedDepositId}")
-    public ResponseEntity<FixedDeposit> getSingleFixedDeposit(@PathVariable String fixedDepositId) {
-        Optional<FixedDeposit> fixedDeposit = fixedDepositService.singleFixedDeposit(fixedDepositId);
-
-        return fixedDeposit.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
+    public ResponseEntity<FixedDeposit> getFixedDepositById(@PathVariable String fixedDepositId) {
+        Optional<FixedDeposit> fixedDeposit = fixedDepositService.getFixedDepositById(fixedDepositId);
+    
+        return fixedDeposit.map(ResponseEntity::ok)
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
+    
+    
 
     @PostMapping
     public ResponseEntity<FixedDeposit> createFixedDeposit(@RequestBody Map<String, Object> payload) {

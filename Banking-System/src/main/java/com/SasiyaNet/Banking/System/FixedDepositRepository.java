@@ -1,9 +1,12 @@
 package com.SasiyaNet.Banking.System;
 
+import java.util.List;
 import java.util.Optional;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.bson.types.ObjectId;
 
 public interface FixedDepositRepository extends MongoRepository<FixedDeposit, ObjectId> {
-    Optional<FixedDeposit> findByFixedDepositId(String fixedDepositId);
+    // List<FixedDeposit> findByAccount_Id(String account_id);
+    Optional<FixedDeposit> findByFixedDepositId(String fixedDepositId); // Add this line
 }
+

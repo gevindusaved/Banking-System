@@ -14,7 +14,11 @@ public class FixedDepositService {
     public List<FixedDeposit> allFixedDeposits() {
         return fixedDepositRepository.findAll();
     }
-
+    public Optional<FixedDeposit> getFixedDepositById(String fixedDepositId) {
+        return fixedDepositRepository.findByFixedDepositId(fixedDepositId);
+    }
+    
+    
     public Optional<FixedDeposit> singleFixedDeposit(String fixedDepositId) {
         return fixedDepositRepository.findByFixedDepositId(fixedDepositId);
     }
