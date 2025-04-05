@@ -25,7 +25,7 @@ public class AddFixedDepositService {
 
     public FixedDeposit updateFixedDeposit(String fixedDepositId, Integer deposit_amount, Integer interest_rate,
             String maturity_date, String account_id) {
-        Query query = new Query(Criteria.where("fixedDepositId").is(fixedDepositId));
+        Query query = new Query(Criteria.where("fixed_deposit_id").is(fixedDepositId));
         Update update = new Update()
                 .set("deposit_amount", deposit_amount)
                 .set("interest_rate", interest_rate)
