@@ -9,6 +9,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
+
 @Document(collection = "fixeddeposits")
 @Data
 @AllArgsConstructor
@@ -26,5 +27,7 @@ public class FixedDeposit {
     private String maturity_date;
     @Field("account_id")
     private String account_id;
+    @Field("full_amount")
+    private Double full_amount; // Add this
 
 }

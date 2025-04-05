@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class Account {
     @Id
     private String id;
-
+    private Double interest_rate; // Add this
     @Field("accountId")
     private String accountId;
 
@@ -26,12 +26,21 @@ public class Account {
     @Field("createdAt")
     private LocalDateTime createdAt; // new field
 
-    public Account(String accountId, String username, Integer balance, String account_type, LocalDateTime createdAt) {
+    public Account(String accountId, String username, Integer balance, String account_type, LocalDateTime createdAt, Double interest_rate) {
         this.accountId = accountId;
         this.username = username;
         this.balance = balance;
         this.account_type = account_type;
         this.createdAt = createdAt;
+        this.interest_rate = interest_rate;
+    }
+    
+    // Add getter & setter
+    public Double getInterest_rate() {
+        return interest_rate;
+    }
+    public void setInterest_rate(Double interest_rate) {
+        this.interest_rate = interest_rate;
     }
 
     // Getters & Setters

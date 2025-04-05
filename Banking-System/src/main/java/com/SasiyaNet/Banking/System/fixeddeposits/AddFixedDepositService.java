@@ -15,11 +15,13 @@ public class AddFixedDepositService {
 
     @Autowired
     private MongoTemplate mongoTemplate;
-
+    public FixedDeposit saveFixedDeposit(FixedDeposit fd) {
+        return fixedDepositRepository.save(fd);
+    }
+    
     public FixedDeposit createFixedDeposit(String fixedDepositId, Integer deposit_amount, Integer interest_rate,
-            String maturity_date, String account_id) {
-        FixedDeposit fixedDeposit = new FixedDeposit(null, fixedDepositId, deposit_amount, interest_rate, maturity_date,
-                account_id);
+            String maturity_date, String account_id, Double full_amount) {
+        FixedDeposit fixedDeposit = new FixedDeposit(null, fixedDepositId, deposit_amount, interest_rate, maturity_date, account_id, full_amount);
         return fixedDepositRepository.save(fixedDeposit);
     }
 
