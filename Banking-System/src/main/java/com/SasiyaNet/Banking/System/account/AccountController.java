@@ -33,20 +33,20 @@ public class AccountController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/{accountId}")
-    public ResponseEntity<?> createAccount(@PathVariable String accountId, @RequestBody Map<String, Object> payload) {
+    @PostMapping
+    public ResponseEntity<?> createAccount(@RequestBody Map<String, Object> payload) {
         try {
             String username = (String) payload.get("username");
             int balance = (Integer) payload.get("balance");
             String account_type = (String) payload.get("account_type");
-
-            Account account = addAccountService.createAccount(accountId, username, balance, account_type);
+    
+            Account account = addAccountService.createAccountAuto(username, balance, account_type);
             return new ResponseEntity<>(account, HttpStatus.CREATED);
-        } catch (RuntimeException e) {
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.CONFLICT);
         } catch (Exception e) {
-            return new ResponseEntity<>("Invalid request data.", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid request data: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+
 
 }

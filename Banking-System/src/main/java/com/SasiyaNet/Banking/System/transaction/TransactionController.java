@@ -1,6 +1,10 @@
 package com.SasiyaNet.Banking.System.transaction;
 
 import org.springframework.web.bind.annotation.*;
+
+import com.SasiyaNet.Banking.System.account.Account;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 import java.util.Map;
@@ -33,24 +37,23 @@ public class TransactionController {
                 .orElseGet(() -> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 
-    @PostMapping("/{transactionId}/{username}")
-    public ResponseEntity<Transaction> createTransaction(
-            @PathVariable String transactionId,
-            @PathVariable String username,
-            @RequestBody Map<String, Object> payload) {
-
+    @PostMapping
+    public ResponseEntity<?> createTransaction(@RequestBody Map<String, Object> payload) {
         try {
             int transactionAmount = Integer.parseInt(payload.get("transaction_amount").toString());
             String transactionType = (String) payload.get("transaction_type");
-            String transactionDate = (String) payload.get("transaction_date");
             String accountId = (String) payload.get("account_id");
-
-            Transaction transaction = addTransactionService.createTransaction(
-                    transactionId, transactionAmount, transactionType, transactionDate, accountId, username);
-
+            String username = (String) payload.get("username"); // make sure frontend sends this!
+    
+            Transaction transaction = addTransactionService.createTransactionAuto(
+                transactionAmount, transactionType, accountId, username
+            );
+    
             return new ResponseEntity<>(transaction, HttpStatus.CREATED);
         } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Invalid request data: " + e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+    
+
 }

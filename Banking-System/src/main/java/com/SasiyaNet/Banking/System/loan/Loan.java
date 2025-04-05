@@ -8,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.time.LocalDateTime;
 
 @Document(collection = "loans")
 @Data
