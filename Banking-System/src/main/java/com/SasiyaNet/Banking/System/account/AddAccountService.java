@@ -1,7 +1,5 @@
 package com.SasiyaNet.Banking.System.account;
 
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -74,16 +72,29 @@ public class AddAccountService {
         Account account = new Account(newAccountId, username, balance, account_type, LocalDateTime.now(), interestRate);
         Account savedAccount = accountRepository.save(account);
 
-        if (account_type.equalsIgnoreCase("fixed deposit")) {
+        if (account_type.equalsIgnoreCase("fixed deposits")) {
             String fixedDepositId = "FD_" + newAccountId;
-
+            LocalDateTime now = LocalDateTime.now();
+            // double interestRate = 13.0;
+        
+            // Start with balance as deposit_amount
+            double currentBalance = balance * 1.0;
+        
+            String maturityDate = now.plusYears(1).toString();
             double fullAmount = balance + (balance * (interestRate / 100.0));
-
-            // For demo, just use LocalDateTime.now() + 1 year
-            String maturityDate = LocalDateTime.now().plusYears(1).toString();
-
-            FixedDeposit fd = new FixedDeposit(null, fixedDepositId, balance, (int) interestRate, maturityDate,
-                    newAccountId, fullAmount);
+        
+            FixedDeposit fd = new FixedDeposit(
+                null,
+                fixedDepositId,
+                balance,
+                (int) interestRate,
+                maturityDate,
+                newAccountId,
+                fullAmount,
+                currentBalance,
+                now
+            );
+        
             addFixedDepositService.saveFixedDeposit(fd);
         }
 
