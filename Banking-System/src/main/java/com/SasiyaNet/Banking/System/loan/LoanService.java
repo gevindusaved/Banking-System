@@ -24,7 +24,7 @@ public class LoanService {
         Loan loan = new Loan(null, loanId, loanAmount, interestRate, dueDate, status, accountId);
         return loansRepository.save(loan);
     }
-    
+
 
     public List<Loan> getAllLoans() {
         return loansRepository.findAll();
