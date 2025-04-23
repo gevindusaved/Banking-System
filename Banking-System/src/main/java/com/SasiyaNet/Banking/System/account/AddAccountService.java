@@ -26,22 +26,6 @@ public class AddAccountService {
     @Autowired
     private AddFixedDepositService addFixedDepositService;
 
-    // public Account createAccount(String accountId, String username, Integer
-    // balance, String account_type,
-    // LocalDateTime createdAt) {
-
-    // Optional<Account> existingAccount =
-    // accountRepository.findByAccountIdAndUsername(accountId, username);
-
-    // if (existingAccount.isPresent()) {
-    // throw new RuntimeException("Account ID already exists for this user.");
-    // }
-
-    // Account account = new Account(accountId, username, balance, account_type,
-    // createdAt);
-    // return accountRepository.save(account);
-    // }
-
     public void updateAccountBalance(String accountId, Integer amount, boolean isDeposit) {
         Query query = new Query(Criteria.where("accountId").is(accountId));
         Account account = mongoTemplate.findOne(query, Account.class);
